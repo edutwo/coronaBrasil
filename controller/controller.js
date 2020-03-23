@@ -188,27 +188,6 @@ function insereCorona(dataConsulta, horaConsulta, pais, uid, casos, suespeitos, 
     }
 }
 
-function insereUserTel(nome,idTelegram) {
-    return new Promise(fn)
-    function fn(resolve, reject) {
-        const pool = require('../config/dbConfig')
-        var sql = 'INSERT INTO contatos(nome,idTelegram,retorno) VALUES ('+`'${nome}','${idTelegram}',1`+')' //procedure mysql envia o status e recebe as informações
-        pool.connTel.getConnection(function (err, con) {
-            if (err) {
-                return reject(err)
-            } else {
-                con.query(sql, function (err, rows) {
-                    if (err) {
-                        return reject(err)
-                    } else {
-                        con.release(); // libera a conexção
-                        return resolve(rows[0])
-                    }
-                })
-            }
-        })
-    }
-}
 
 const convertUTF8 = (palavra) => {
     buf = iconv.encode(palavra, 'latin1');
@@ -222,7 +201,6 @@ function close() {
 }
 
 module.exports = { insereCorona, 
-    insereUserTel, 
     consultaData, 
     consultaCorona, 
     consultaUltimo, 
