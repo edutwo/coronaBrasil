@@ -13,7 +13,7 @@
   "author": "Eduardo Santos",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.17.1",
+    "axios": "^0.19.2",
     "axios-oauth-client": "^1.2.1",
     "axios-token-interceptor": "^0.2.0",
     "cheerio": "^1.0.0-rc.3",
