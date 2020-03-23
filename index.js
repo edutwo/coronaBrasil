@@ -95,7 +95,7 @@ const verificarUsuarioTeste = (ctx, next) => {
     const from = ctx.update.message.from
     const nome = from.first_name
     const iduser = from.id
-    const idDesenvolvedor = '36009809'
+    const idDesenvolvedor = '000000'
     getControl.insereUserTel(nome, iduser)
     ctx.reply(`
 Seja bem vindo, ${nome}!\n 
