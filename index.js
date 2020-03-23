@@ -2,7 +2,6 @@
 const env = require('./.env')
 const getControl = require('./controller/controller')
 const funcoes = require('./config/funcoes')
-const banco = require('./bd/markers')
 const Telegraf = require('telegraf')
 const Composer = require('telegraf/composer')
 const Session = require('telegraf/session')
@@ -15,7 +14,6 @@ const moment = require('moment')
 const schedule = require('node-schedule')
 const Fs = require('fs')
 const Promise = require('promise');
-const emoji = require('node-emoji')
 const Axios = require('axios')
 const cheerio = require('cheerio')
 const Path = require('path')
@@ -23,10 +21,6 @@ const Path = require('path')
 const { enter, leave } = Stage
 
 const bot = new Telegraf(env.token)
-
-//console.log(emoji.get(':x:'))
-
-
 
 async function downloadBDCorona() {
     const url = 'https://alerta-corona-backend.herokuapp.com/markers'
@@ -57,11 +51,6 @@ schedule.scheduleJob('* 5 0-23 * *', function () {
 //    renomearBanco()
 //      getControl.limpaContagio()
 })
-
-schedule.scheduleJob('30 5 0-23 * *', function () {
-
-})
-
 //getControl.limpaContagio()
 
 let corona = []
@@ -112,10 +101,6 @@ const verificarUsuarioTeste = (ctx, next) => {
 Seja bem vindo, ${nome}!\n 
 Bot Informativo sobre casos da COVID-19 no Brasil
 Dados obtidos na Plataforma do Ministério da Saúde\n`, desenvolvedor)
-   
-
-    bot.telegram.sendMessage(idDesenvolvedor, `${nome} - ${iduser}`)
-    next()
 }
 
 
@@ -191,89 +176,3 @@ bot.use(Session())
 bot.use(stage.middleware())
 bot.action('corona', enter('corona'))
 bot.startPolling()
-
-
-
-/* Plataforma saude coronavirus
-
-async function downloadBDCorona() {
-    const url = 'http://plataforma.saude.gov.br/novocoronavirus/resources/scripts/database.js'
-    const path = Path.resolve(__dirname, 'bd', 'databaseSite.js')
-    const writer = Fs.createWriteStream(path)
-
-    const response = await Axios({
-        url,
-        method: 'GET',
-        responseType: 'stream'
-    })
-
-    response.data.pipe(writer)
-
-    return new Promise((resolve, reject) => {
-        writer.on('finish', resolve)
-        writer.on('error', reject)
-    })
-}
-
-async function renomearBanco() {
-    Fs.readFile('./bd/databaseSite.js', 'utf-8', function (err, data) {
-        if (err) throw err
-        //console.log(data.replace('var database=',''))
-        Fs.writeFile('./bd/database.json', data.replace('var database=', ''), function (err) {
-            if (err) throw err;
-            console.log('Arquivo salvo!');
-        })
-    })
-}
-
-
-schedule.scheduleJob('* * 0-23 * *', function () {
-    downloadBDCorona()
-})
-
-schedule.scheduleJob('* 5 0-23 * *', function () {
-    renomearBanco()
-    //  getControl.limpaContagio()
-})
-
-schedule.scheduleJob('30 5 0-23 * *', function () {
-
-
-})
-
-
-
-let corona = []
-    corona.push(banco['brazil'])
-
-    let res = []
-    let dtres = []
-    corona.forEach(function (item) {
-        var brasil = item
-        brasil.forEach(function (itens) {
-            var estados = itens.values
-            console.log(estados)
-            estados.forEach(function (res) {
-                var uid = res.uid
-                var casos = res.cases
-                var suspeitos = res.suspects
-                var descartados = res.refuses
-                var obitos = res.deaths
-                var comentarios = res.comments
-                const dataArquivo = itens.date
-                const horaArquivo = itens.time
-               getControl.insereCorona(moment(itens.date, "DD/MM/YYYY").format("YYYY-MM-DD"), horaArquivo, 'Brasil', verificar(uid), verificar(casos), verificar(suspeitos), verificar(descartados), verificar(obitos), verificar(comentarios))
-                console.log(moment(itens.date, "DD/MM/YYYY").format("YYYY-MM-DD"), horaArquivo, 'Brasil', verificar(uid), verificar(casos), verificar(suspeitos), verificar(descartados), verificar(obitos), verificar(comentarios))
-            })
-        })
-    })
-
-
-    fetch("https://pomber.github.io/covid19/timeseries.json")
-  .then(response => response.json())
-  .then(data => {
-    data["Argentina"].forEach(({ date, confirmed, recovered, deaths }) =>
-      console.log(`${date} active cases: ${confirmed - recovered - deaths}`)
-    )
-  })
-    */
