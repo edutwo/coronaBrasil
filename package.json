@@ -1,0 +1,31 @@
+{
+  "name": "coronabot",
+  "version": "1.0.0",
+  "description": "Acompanhamento Corona Virus Brasil",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "corona",
+    "virus"
+  ],
+  "author": "Eduardo Santos",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "axios-oauth-client": "^1.2.1",
+    "axios-token-interceptor": "^0.2.0",
+    "cheerio": "^1.0.0-rc.3",
+    "dateformat": "^3.0.3",
+    "iconv-lite": "^0.4.23",
+    "moment": "2.20.1",
+    "mysql2": "^1.5.3",
+    "node-emoji": "^1.10.0",
+    "node-schedule": "^1.3.0",
+    "promise": "^8.0.1",
+    "qs": "^6.9.1",
+    "telegraf": "^3.21.2",
+    "telegraf-inline-menu": "^4.0.0"
+  }
+}
