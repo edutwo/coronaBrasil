@@ -96,7 +96,6 @@ const verificarUsuarioTeste = (ctx, next) => {
     const nome = from.first_name
     const iduser = from.id
     const idDesenvolvedor = '000000'
-    getControl.insereUserTel(nome, iduser)
     ctx.reply(`
 Seja bem vindo, ${nome}!\n 
 Bot Informativo sobre casos da COVID-19 no Brasil
