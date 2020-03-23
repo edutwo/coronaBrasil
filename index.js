@@ -1,5 +1,5 @@
 'use strict'
-const env = require('./.env')
+const env = require('env')
 const getControl = require('./controller/controller')
 const funcoes = require('./config/funcoes')
 const Telegraf = require('telegraf')
