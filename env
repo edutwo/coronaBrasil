@@ -1,0 +1,8 @@
+const token = 'tokenseubot' 
+
+module.exports = {
+    token,
+    apiUrl: `https://api.telegram.org/bot${token}`,
+    apiFileUrl: `https://api.telegram.org/bot${token}`
+}
+
